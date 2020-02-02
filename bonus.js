@@ -32,6 +32,7 @@ while (cursorPayment.hasNext()) {
       }
       if (trackUsers.length === 0) {
          noTrackUsersCount++;
+         printjson(track.callNotes);
       }
    }
 }
