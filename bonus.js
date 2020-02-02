@@ -14,8 +14,8 @@ while (cursorPayment.hasNext()) {
       paymentsCount++;
       track = db.companyCreationTrack.findOne({_id: legalEntityId});
    }
-   var trackUsers = [];
    if (track !== null && track.callNotes !== null) {
+      var trackUsers = [];
       for (var trackIt = 0; trackIt < track.callNotes.length; trackIt++) {
          var trackUser = track.callNotes[trackIt].user;
          if (trackUser && trackUsers.indexOf(trackUser) < 0 && (trackUser === "lucianbunea81@gmail.com" || trackUser === "zimbru.anisoara07@gmail.com")) {
@@ -30,8 +30,9 @@ while (cursorPayment.hasNext()) {
             userContrib[cUser] = (userContrib[cUser] + (1.0 / (1.0 * trackUsers.length)));
          }
       }
-   } else {
-      noTrackUsersCount++;
+      if (trackUsers.length === 0) {
+         noTrackUsersCount++;
+      }
    }
 }
 print(paymentsCount);
