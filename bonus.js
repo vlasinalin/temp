@@ -17,18 +17,16 @@ while (cursorPayment.hasNext()) {
       var trackUsers = [];
       for (var trackIt = 0; trackIt < track.callNotes.length; trackIt++) {
          var trackUser = track.callNotes[trackIt].user;
-         if (trackUser && trackUsers.indexOf(trackUser) < 0) {
+         if (trackUser && trackUsers.indexOf(trackUser) < 0 && (trackUser === "lucianbunea81@gmail.com" || trackUser === "zimbru.anisoara07@gmail.com")) {
             trackUsers.push(trackUser);
          }
       }
       for (var userIt = 0; userIt < trackUsers.length; userIt++) {
          var cUser = trackUsers[userIt];
-         if (cUser === "lucianbunea81@gmail.com" || cUser === "zimbru.anisoara07@gmail.com") {
-            if (userContrib[cUser] === undefined) {
-               userContrib[cUser] = 0.0;
-            } else {
-               userContrib[cUser] = (userContrib[cUser] + (1.0 / (1.0 * trackUsers.length)));
-            }
+         if (userContrib[cUser] === undefined) {
+            userContrib[cUser] = 0.0;
+         } else {
+            userContrib[cUser] = (userContrib[cUser] + (1.0 / (1.0 * trackUsers.length)));
          }
       }
    }
