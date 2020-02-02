@@ -1,5 +1,6 @@
 var userContrib = {};
 var paymentsCount = 0;
+var noTrackUsersCount = 0;
 var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: {$gt: new Date("2020-01-01")}});
 while (cursorPayment.hasNext()) {
    var cPayment = cursorPayment.next();
@@ -13,8 +14,8 @@ while (cursorPayment.hasNext()) {
       paymentsCount++;
       track = db.companyCreationTrack.findOne({_id: legalEntityId});
    }
+   var trackUsers = [];
    if (track !== null && track.callNotes !== null) {
-      var trackUsers = [];
       for (var trackIt = 0; trackIt < track.callNotes.length; trackIt++) {
          var trackUser = track.callNotes[trackIt].user;
          if (trackUser && trackUsers.indexOf(trackUser) < 0 && (trackUser === "lucianbunea81@gmail.com" || trackUser === "zimbru.anisoara07@gmail.com")) {
@@ -29,7 +30,10 @@ while (cursorPayment.hasNext()) {
             userContrib[cUser] = (userContrib[cUser] + (1.0 / (1.0 * trackUsers.length)));
          }
       }
+   } else {
+      noTrackUsersCount++;
    }
 }
 print(paymentsCount);
+print(noTrackUsersCount);
 printjson(userContrib);
