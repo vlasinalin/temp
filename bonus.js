@@ -35,7 +35,7 @@ while (cursorPayment.hasNext()) {
          printjson(track.callNotes);
       }
    } else {
-      printJson(cPayment);
+      printjson(cPayment);
    }
 }
 print(paymentsCount);
