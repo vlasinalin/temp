@@ -1,14 +1,16 @@
 var userContrib = {};
+var paymentsCount = 0;
 var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: {$gt: new Date("2020-01-01")}});
-print(cursorPayment.count());
 while (cursorPayment.hasNext()) {
    var cPayment = cursorPayment.next();
    var legalEntityId = ObjectId(cPayment.legalEntityId);
    var track = null;
    if (cPayment.operation === "MODIFICARE_FIRMA") {
+      paymentsCount++;
       track = db.companyModificationTrack.findOne({_id: legalEntityId});
    }
    if (cPayment.operation === "SRL-2" || cPayment.operation === "SRL-D-2" || cPayment.operation === "PFA" || cPayment.operation === "II") {
+      paymentsCount++;
       track = db.companyCreationTrack.findOne({_id: legalEntityId});
    }
    if (track !== null && track.callNotes !== null) {
@@ -31,4 +33,5 @@ while (cursorPayment.hasNext()) {
       }
    }
 }
+print(paymentsCount);
 printjson(userContrib);
