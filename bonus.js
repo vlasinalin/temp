@@ -4,6 +4,8 @@ while (cursorPayment.hasNext()) {
    var cPayment = cursorPayment.next();
    var legalEntityId = cPayment.legalEntityId;
    var track = null;
+   print(legalEntityId);
+   print(cPayment.operation);
    if (cPayment.operation === "MODIFICARE_FIRMA") {
       track = db.companyModificationTrack.findOne({_id: legalEntityId});
    }
