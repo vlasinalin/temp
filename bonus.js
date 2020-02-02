@@ -16,7 +16,7 @@ while (cursorPayment.hasNext()) {
       var trackUsers = [];
       for (var trackIt = 0; trackIt < track.callNotes.length; trackIt++) {
          var trackUser = track.callNotes[trackIt].user;
-         if (trackUser && !trackUsers.contains(trackUser)) {
+         if (trackUser && trackUsers.indexOf(trackUser) < 0) {
             trackUsers.push(trackUser);
          }
       }
