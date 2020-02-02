@@ -9,10 +9,16 @@ while (cursorPayment.hasNext()) {
    if (cPayment.operation === "MODIFICARE_FIRMA") {
       paymentsCount++;
       track = db.companyModificationTrack.findOne({_id: legalEntityId});
+      if (track === null || track.callNotes === null) {
+         printjson(cPayment);
+      }
    }
    if (cPayment.operation === "SRL-2" || cPayment.operation === "SRL-D-2" || cPayment.operation === "PFA" || cPayment.operation === "II") {
       paymentsCount++;
       track = db.companyCreationTrack.findOne({_id: legalEntityId});
+      if (track === null || track.callNotes === null) {
+         printjson(cPayment);
+      }
    }
    if (track !== null && track.callNotes !== null) {
       var trackUsers = [];
@@ -34,8 +40,6 @@ while (cursorPayment.hasNext()) {
          noTrackUsersCount++;
          printjson(track.callNotes);
       }
-   } else {
-      printjson(cPayment);
    }
 }
 print(paymentsCount);
