@@ -8,7 +8,9 @@ while (cursorPayment.hasNext()) {
    var track = null;
    if (cPayment.operation === "MODIFICARE_FIRMA") {
       paymentsCount++;
-      track = db.companyModificationTrack.findOne({_id: legalEntityId});
+      var companyModif = db.companyModification.findOne({_id: legalEntityId})
+      var companyId = ObjectId(companyModif.companyId);
+      track = db.companyModificationTrack.findOne({_id: companyId});
       if (track === null || track.callNotes === null) {
          printjson(cPayment);
       }
