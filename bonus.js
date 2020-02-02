@@ -22,10 +22,12 @@ while (cursorPayment.hasNext()) {
       }
       for (var userIt = 0; userIt < trackUsers.length; userIt++) {
          var cUser = trackUsers[userIt];
-         if (!userContrib[cUser]) {
-            userContrib[cUser] = 0;
-         } else {
-            userContrib[cUser] = userContrib[cUser] + (1.0 / trackUsers.length);
+         if (cUser === "lucianbunea81@gmail.com" || cUser === "zimbru.anisoara07@gmail.com") {
+            if (!userContrib[cUser]) {
+               userContrib[cUser] = 0.0;
+            } else {
+               userContrib[cUser] = userContrib[cUser] + (1.0 / trackUsers.length * 1.0);
+            }
          }
       }
    }
