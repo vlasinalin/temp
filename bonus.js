@@ -1,5 +1,7 @@
 var userContrib = {};
 var paymentsCount = 0;
+var salesCallPayment = 0;
+var salesPaymentsCount = 0;
 var noTrackUsersCount = 0;
 var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: {$gt: new Date("2020-02-01")}});
 while (cursorPayment.hasNext()) {
@@ -23,12 +25,16 @@ while (cursorPayment.hasNext()) {
       }
    }
    if (track !== null && track.callNotes !== null) {
+      var salesCall = 0;
       var trackUsers = [];
       for (var trackIt = 0; trackIt < track.callNotes.length; trackIt++) {
          var trackUser = track.callNotes[trackIt].user;
          if (trackUser && trackUsers.indexOf(trackUser) < 0 && 
-             (trackUser === "lucianbunea81@gmail.com" || trackUser === "zimbru.anisoara07@gmail.com" || trackUser === "andreeavlasin26@gmail.com")) {
+             (trackUser === "lucianbunea81@gmail.com" || trackUser === "zimbru.anisoara07@gmail.com")) {
             trackUsers.push(trackUser);
+         }
+         if (trackUser && trackUsers.indexOf(trackUser) < 0 && trackUser === "andreeavlasin26@gmail.com") {
+            salesCall = 1;
          }
       }
       for (var userIt = 0; userIt < trackUsers.length; userIt++) {
@@ -39,12 +45,18 @@ while (cursorPayment.hasNext()) {
             userContrib[cUser] = (userContrib[cUser] + (1.0 / (1.0 * trackUsers.length)));
          }
       }
+      if (salesCall > 0) {
+         salesCallPayment+= cPayment.price;
+         salesPaymentsCount++;
+      }
       if (trackUsers.length === 0) {
          noTrackUsersCount++;
          printjson(track.callNotes);
       }
    }
 }
-print(paymentsCount);
-print(noTrackUsersCount);
+print("Payments count: " + paymentsCount);
+print("No track users count: " + noTrackUsersCount);
+print("Sales call payment: " + salesCallPayment);
+print("Sales payments count: " + salesPaymentsCount);
 printjson(userContrib);
