@@ -1,4 +1,5 @@
 var userContrib = {};
+var paymentsValue = 0;
 var paymentsCount = 0;
 var salesCallPayment = 0;
 var salesPaymentsCount = 0;
@@ -25,6 +26,7 @@ while (cursorPayment.hasNext()) {
       }
    }
    if (track !== null && track.callNotes !== null) {
+      paymentsValue += cPayment.price;
       var salesCall = 0;
       var trackUsers = [];
       for (var trackIt = 0; trackIt < track.callNotes.length; trackIt++) {
@@ -55,6 +57,7 @@ while (cursorPayment.hasNext()) {
       }
    }
 }
+print("Payments value: " + paymentsValue);
 print("Payments count: " + paymentsCount);
 print("No track users count: " + noTrackUsersCount);
 print("Sales call payment: " + salesCallPayment);
