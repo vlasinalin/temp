@@ -1,7 +1,7 @@
 var userContrib = {};
 var paymentsCount = 0;
 var noTrackUsersCount = 0;
-var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: {$gt: new Date("2020-01-01")}});
+var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: {$gt: new Date("2020-02-01")}});
 while (cursorPayment.hasNext()) {
    var cPayment = cursorPayment.next();
    var legalEntityId = ObjectId(cPayment.legalEntityId);
