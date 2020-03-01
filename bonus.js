@@ -44,7 +44,7 @@ while (cursorPayment.hasNext()) {
          if (userContrib[cUser] === undefined) {
             userContrib[cUser] = 0.0;
          } else {
-            userContrib[cUser] = (userContrib[cUser] + (1.0 / (1.0 * trackUsers.length)));
+            userContrib[cUser] = (userContrib[cUser] + (cPayment.price / (1.0 * trackUsers.length)));
          }
       }
       if (salesCall > 0) {
