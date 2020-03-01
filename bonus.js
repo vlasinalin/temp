@@ -26,7 +26,8 @@ while (cursorPayment.hasNext()) {
       var trackUsers = [];
       for (var trackIt = 0; trackIt < track.callNotes.length; trackIt++) {
          var trackUser = track.callNotes[trackIt].user;
-         if (trackUser && trackUsers.indexOf(trackUser) < 0 && (trackUser === "lucianbunea81@gmail.com" || trackUser === "zimbru.anisoara07@gmail.com")) {
+         if (trackUser && trackUsers.indexOf(trackUser) < 0 && 
+             (trackUser === "lucianbunea81@gmail.com" || trackUser === "zimbru.anisoara07@gmail.com" || trackUser === "andreeavlasin26@gmail.com")) {
             trackUsers.push(trackUser);
          }
       }
