@@ -4,7 +4,7 @@ var paymentsValue = 0;
 var paymentsCount = 0;
 var dateFrom = new Date("2020-03-01");
 
-var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: { $gt: new Date("2020-02-20"), $lt: new Date("2020-03-20") }});
+var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: { $gt: new Date("2020-02-10"), $lt: new Date("2020-04-01") }});
 
 while (cursorPayment.hasNext()) {
    var cPayment = cursorPayment.next();
@@ -51,12 +51,12 @@ while (cursorPayment.hasNext()) {
          var user;
          user = resolutions["DOSAR GHISEU VERIFICAT"];
          if (user) {
-            userContrib[user] = (userContrib[user] || 0) + 5;
+            userContrib[user] = (userContrib[user] || 0) + 10;
             userOperations["DGV-" + user] =  (userOperations["DGV-" + user] || 0) + 1;
          }
          user = resolutions["DOSAR DEPUS ONLINE"];
          if (user) {
-            userContrib[user] = (userContrib[user] || 0) + 10;
+            userContrib[user] = (userContrib[user] || 0) + 20;
             userOperations["DDO-" + user] =  (userOperations["DDO-" + user] || 0) + 1;
          }
          user = resolutions["UPLOAD REZERVARE DENUMIRE"];
