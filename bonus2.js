@@ -4,7 +4,7 @@ var paymentsValue = 0;
 var paymentsCount = 0;
 var dateFrom = new Date("2020-03-01");
 
-var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: { $gt: new Date("2020-03-01"), $lt: new Date("2020-04-01") }});
+var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: { $gt: new Date("2020-02-20"), $lt: new Date("2020-03-20") }});
 
 while (cursorPayment.hasNext()) {
    var cPayment = cursorPayment.next();
