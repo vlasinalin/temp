@@ -36,6 +36,9 @@ while (cursorPayment.hasNext()) {
             if (callNote.note === "DOSAR DEPUS ONLINE") {
                resolutions[callNote.note] = callNote.user;
             }
+            if (callNote.note === "UPLOAD REZERVARE DENUMIRE") {
+               resolutions[callNote.note] = callNote.user;
+            }
             if (callNote.note === "SINCRONIZARE ONRC") {
                resolutions[callNote.note] = callNote.user;
             }
@@ -44,13 +47,18 @@ while (cursorPayment.hasNext()) {
       var user;
       user = resolutions["DOSAR GHISEU VERIFICAT"];
       if (user) {
-         userContrib[user] = (userContrib[user] || 0) + 10;
+         userContrib[user] = (userContrib[user] || 0) + 5;
          userOperations["DGV-" + user] =  (userOperations["DGV-" + user] || 0) + 1;
       }
       user = resolutions["DOSAR DEPUS ONLINE"];
       if (user) {
-         userContrib[user] = (userContrib[user] || 0) + 20;
+         userContrib[user] = (userContrib[user] || 0) + 10;
          userOperations["DDO-" + user] =  (userOperations["DDO-" + user] || 0) + 1;
+      }
+      user = resolutions["UPLOAD REZERVARE DENUMIRE"];
+      if (user) {
+         userContrib[user] = (userContrib[user] || 0) + 5;
+         userOperations["URD-" + user] =  (userOperations["URD-" + user] || 0) + 1;
       }
       user = resolutions["SINCRONIZARE ONRC"];
       if (user) {
