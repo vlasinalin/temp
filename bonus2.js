@@ -2,7 +2,7 @@ var userContrib = {};
 var userOperations = {};
 var paymentsValue = 0;
 var paymentsCount = 0;
-var dateFrom = new Date("2020-03-01");
+var dateFrom = new Date("2020-04-01");
 
 var cursorPayment = db.payment.find({paymentState: "Confirmed", credited: false, paymentDate: { $gt: new Date("2020-03-10"), $lt: new Date("2020-05-01") }});
 
